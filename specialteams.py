@@ -2,7 +2,7 @@ from requests_html import HTMLSession
 import json
 
 s = HTMLSession()
-url = 'https://www.del-2.org/statistik/schuesse/133/'
+url = 'https://www.del-2.org/statistik/specialteams/133/'
 
 r = s.get(url)
 
@@ -13,5 +13,7 @@ tableheader = [[c.text for c in row.find('th')] for row in table.find('tr')][1]
 
 data = [dict(zip(tableheader, t)) for t in tabledata]
 
-with open('data/stats/shot_goals_all.json', 'w') as f:
+print(data)
+
+with open('data/stats/specialteams.json', 'w') as f:
         json.dump(data, f)
